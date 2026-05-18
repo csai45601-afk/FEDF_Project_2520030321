@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Best | Premium Hotel Reservations</title>
+    <!-- Importing a professional Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Easy Theming --- */
+        :root {
+            --primary-color: #1A365D; /* Deep Navy */
+            --accent-color: #D69E2E; /* Premium Gold */
+            --accent-hover: #B7791F;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --bg-light: #F7FAFC;
+            --white: #FFFFFF;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        header {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        .admin-login {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .admin-login:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 75vh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            background-image: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.6)), url('https://images.unsplash.com/photo-1542314831-c6a4d1409e1f?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* --- Search Engine Widget --- */
+        .search-widget {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 90%;
+            max-width: 1000px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            align-items: flex-end;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .input-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-group input, .input-group select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary-color);
+            background-color: var(--white);
+        }
+        .btn-search {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            height: 100%; /* Align with inputs */
+        }
+        .btn-search:hover {
+            background-color: var(--accent-hover);
+        }
+        .btn-search:active {
+            transform: scale(0.98);
+        }
+
+        /* --- Features Section --- */
+        .features-section {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 {
+            font-size: 2.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            padding: 2rem;
+            border-radius: 12px;
+            background-color: var(--bg-light);
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #A0AEC0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            nav { display: none; } /* Hide nav on mobile for simplicity in this demo */
+            .search-form { grid-template-columns: 1fr; }
+            .btn-search { padding: 1rem; }
+            .hero { padding-top: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Booking Best</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Discover Rooms</a>
+            <a href="#">Amenities</a>
+            <a href="#" class="admin-login">Admin Portal</a>
+        </nav>
+    </header>
+
+    <!-- Hero & Booking Engine -->
+    <section class="hero">
+        <h1>Refined Stays, Reserved Instantly.</h1>
+        <p>Experience real-time availability and a seamless reservation workflow tailored for the modern traveler.</p>
+        
+        <div class="search-widget">
+            <form class="search-form" id="bookingForm">
+                <div class="input-group">
+                    <label for="checkin">Check-in Date</label>
+                    <input type="date" id="checkin" required>
+                </div>
+                <div class="input-group">
+                    <label for="checkout">Check-out Date</label>
+                    <input type="date" id="checkout" required disabled title="Please select a check-in date first">
+                </div>
+                <div class="input-group">
+                    <label for="guests">Occupancy</label>
+                    <select id="guests" required>
+                        <option value="" disabled selected>Select guests</option>
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4+ Guests</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn-search">Check Availability</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2>Why Book With Us?</h2>
+            <p>Our full-stack architecture ensures a reliable, fast, and transparent booking experience from start to finish.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Real-Time Availability</h3>
+                <p>Our system continuously syncs room statuses, ensuring you only see what is truly available at any given moment. No double-bookings.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Dynamic Room Filtering</h3>
+                <p>Narrow down your search effortlessly. Filter by dates, room capacity, and specific amenities to find the exact accommodation you need.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Transactions</h3>
+                <p>Complete your reservation through our seamless checkout workflow, featuring a secure mock payment module and instant email confirmations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Booking Best. All rights reserved.</p>
+    </footer>
+
+    <!-- --- JAVASCRIPT FOR DATE VALIDATION --- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkinInput = document.getElementById('checkin');
+            const checkoutInput = document.getElementById('checkout');
+            const bookingForm = document.getElementById('bookingForm');
+
+            // 1. Get today's date formatted as YYYY-MM-DD
+            const today = new Date();
+            // We use local time to prevent timezone offset issues
+            const todayString = today.toLocaleDateString('en-CA'); // 'en-CA' outputs YYYY-MM-DD
+            
+            // 2. Restrict Check-in to today or future dates
+            checkinInput.setAttribute('min', todayString);
+
+            // 3. Logic when Check-in date is selected/changed
+            checkinInput.addEventListener('change', function() {
+                if (this.value) {
+                    // Enable checkout input once checkin is selected
+                    checkoutInput.disabled = false;
+                    checkoutInput.title = "";
+
+                    // Calculate the day after check-in
+                    const selectedCheckinDate = new Date(this.value);
+                    selectedCheckinDate.setDate(selectedCheckinDate.getDate() + 1);
+                    
+                    const minCheckoutString = selectedCheckinDate.toLocaleDateString('en-CA');
+                    
+                    // Restrict Check-out to be at least 1 day after Check-in
+                    checkoutInput.setAttribute('min', minCheckoutString);
+
+                    // If a checkout date was already selected and it's now invalid, clear it
+                    if (checkoutInput.value && checkoutInput.value < minCheckoutString) {
+                        checkoutInput.value = '';
+                    }
+                } else {
+                    // If checkin is cleared, disable checkout again
+                    checkoutInput.disabled = true;
+                    checkoutInput.value = '';
+                }
+            });
+
+            // 4. Form Submission Handling (Mock behavior)
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent page reload
+                
+                // Final validation check just in case
+                if (checkinInput.value >= checkoutInput.value) {
+                    alert("Error: Check-out date must be after the Check-in date.");
+                    return;
+                }
+
+                const guests = document.getElementById('guests').value;
+                alert(`Success! Searching for rooms from ${checkinInput.value} to ${checkoutInput.value} for ${guests} guest(s).`);
+            });
+        });
+    </script>
+</body>
+</html>
